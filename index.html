@@ -85,6 +85,14 @@
       text-align: center;
     }
 
+    /* 言語ボタン内の国旗 + テキスト */
+    .lang-buttons button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      justify-content: center;
+    }
+
     .lang-buttons button.active, .theme-buttons button.active {
       background: var(--primary);
       border-color: var(--primary);
@@ -259,10 +267,10 @@
       <h1 id="mainTitle">🏖️ Asia Best Beaches</h1>
       <div class="header-controls">
         <div class="lang-buttons">
-          <button data-lang="en" class="active">English</button>
-          <button data-lang="it">Italiano</button>
-          <button data-lang="ru">Русский</button>
-          <button data-lang="ja">Japanese</button>
+          <button data-lang="en" class="active">🇬🇧 English</button>
+          <button data-lang="it">🇮🇹 Italiano</button>
+          <button data-lang="ru">🇷🇺 Русский</button>
+          <button data-lang="ja">🇯🇵 日本語</button>
         </div>
         <div class="theme-buttons">
           <button id="darkModeBtn">🌙 Dark</button>
