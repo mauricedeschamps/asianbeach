@@ -1,0 +1,24 @@
+{
+  "name": "Asia Best Beaches",
+  "short_name": "BeachGuide",
+  "description": "アジアのベストビーチ12選 - 海水浴・パーティー・シュノーケリング",
+  "start_url": "index.html",
+  "display": "standalone",
+  "theme_color": "#1a1a2e",
+  "background_color": "#121212",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icons/icon-192.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
