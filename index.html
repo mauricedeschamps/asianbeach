@@ -72,17 +72,20 @@
       gap: 0.5rem;
     }
 
-    button {
+    .lang-buttons button, .theme-buttons button {
       background: var(--card);
       border: 1px solid var(--border);
       color: var(--text);
-      padding: 0.4rem 1rem;
+      padding: 0.3rem 0.8rem;
       border-radius: 2rem;
       cursor: pointer;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      min-width: 70px;
+      text-align: center;
     }
 
-    button.active {
+    .lang-buttons button.active, .theme-buttons button.active {
       background: var(--primary);
       border-color: var(--primary);
       color: white;
@@ -93,20 +96,38 @@
       margin-bottom: 0.25rem;
     }
 
-    /* スポンサー枠 */
+    /* スポンサー枠（画像＋リンク） */
     .sponsor {
       background: var(--card);
-      border: 1px dashed var(--primary);
+      border: 1px solid var(--border);
       border-radius: 1rem;
       padding: 1rem;
       text-align: center;
       margin: 1.5rem 0;
       font-size: 0.9rem;
     }
-
-    .sponsor a {
+    .sponsor-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .sponsor-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 0.75rem;
+      background: #334155;
+    }
+    .sponsor-link {
       color: var(--primary);
       text-decoration: none;
+      font-weight: 500;
+    }
+    .sponsor-text {
+      color: var(--text-muted);
+      font-size: 0.8rem;
     }
 
     /* ビーチグリッド */
@@ -184,6 +205,8 @@
       display: inline-flex;
       align-items: center;
       gap: 0.3rem;
+      padding: 0.4rem 1rem;
+      cursor: pointer;
     }
 
     .detail-img {
@@ -236,10 +259,10 @@
       <h1 id="mainTitle">🏖️ Asia Best Beaches</h1>
       <div class="header-controls">
         <div class="lang-buttons">
-          <button data-lang="en" class="active">🇬🇧 English</button>
-          <button data-lang="it">🇮🇹 Italiano</button>
-          <button data-lang="ru">🇷🇺 Русский</button>
-          <button data-lang="ja">🇯🇵 日本語</button>
+          <button data-lang="en" class="active">English</button>
+          <button data-lang="it">Italiano</button>
+          <button data-lang="ru">Русский</button>
+          <button data-lang="ja">Japanese</button>
         </div>
         <div class="theme-buttons">
           <button id="darkModeBtn">🌙 Dark</button>
@@ -250,10 +273,15 @@
   </div>
 
   <div class="container">
-    <!-- 上部スポンサー -->
-    <div id="topSponsor" class="sponsor">
-      🎯 SPONSOR <br>
-      <a href="#" id="sponsorLinkTop" target="_blank">Your ad here → Contact us</a>
+    <!-- 上部スポンサー（イメージ＋公式サイト） -->
+    <div class="sponsor" id="topSponsor">
+      <div class="sponsor-content">
+        <img class="sponsor-img" src="https://picsum.photos/id/82/80/80" alt="Sponsor">
+        <div>
+          <div class="sponsor-text">✨ SPONSOR</div>
+          <a href="#" id="sponsorLinkTop" class="sponsor-link" target="_blank">Visit Official Website →</a>
+        </div>
+      </div>
     </div>
 
     <!-- メインコンテンツ（一覧 or 詳細） -->
@@ -263,10 +291,15 @@
 
     <div id="detailView" class="hidden"></div>
 
-    <!-- 下部スポンサー -->
-    <div id="bottomSponsor" class="sponsor">
-      🌟 SPONSOR <br>
-      <a href="#" id="sponsorLinkBottom" target="_blank">Promote your brand → Get in touch</a>
+    <!-- 下部スポンサー（イメージ＋公式サイト） -->
+    <div class="sponsor" id="bottomSponsor">
+      <div class="sponsor-content">
+        <img class="sponsor-img" src="https://picsum.photos/id/26/80/80" alt="Sponsor">
+        <div>
+          <div class="sponsor-text">🌟 SPONSOR</div>
+          <a href="#" id="sponsorLinkBottom" class="sponsor-link" target="_blank">Visit Official Website →</a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -341,33 +374,27 @@
         desc_ja: "白砂、BBQ設備、泳ぎやすい穏やかな海。", image: "https://picsum.photos/id/42/400/300", url: "https://visitokinawa.jp" }
     ];
 
-    // 言語セット (英語デフォルト)
     let currentLang = 'en';
     let currentTheme = 'dark';
 
-    // テキスト翻訳マップ（タイトルなど）
     const uiText = {
-      en: { back: "← Back to list", officialSite: "Official Website", details: "Details" },
-      it: { back: "← Torna all'elenco", officialSite: "Sito Ufficiale", details: "Dettagli" },
-      ru: { back: "← Назад к списку", officialSite: "Официальный сайт", details: "Подробности" },
-      ja: { back: "← 一覧に戻る", officialSite: "公式ホームページ", details: "詳細" }
+      en: { back: "← Back to list", officialSite: "Official Website" },
+      it: { back: "← Torna all'elenco", officialSite: "Sito Ufficiale" },
+      ru: { back: "← Назад к списку", officialSite: "Официальный сайт" },
+      ja: { back: "← 一覧に戻る", officialSite: "公式ホームページ" }
     };
 
-    // DOM 要素
+    const titles = { en: "🏖️ Asia Best Beaches", it: "🏖️ Le migliori spiagge dell'Asia", ru: "🏖️ Лучшие пляжи Азии", ja: "🏖️ アジアのベストビーチ" };
+
     const listView = document.getElementById('listView');
     const detailView = document.getElementById('detailView');
     const beachGrid = document.getElementById('beachGrid');
     const mainTitle = document.getElementById('mainTitle');
 
-    // タイトル多言語
-    const titles = { en: "🏖️ Asia Best Beaches", it: "🏖️ Le migliori spiagge dell'Asia", ru: "🏖️ Лучшие пляжи Азии", ja: "🏖️ アジアのベストビーチ" };
-
     function renderList() {
-      const lang = currentLang;
-      const grid = beachGrid;
-      grid.innerHTML = '';
+      beachGrid.innerHTML = '';
       beaches.forEach(beach => {
-        let name = beach[`name_${lang}`] || beach.name_en;
+        let name = beach[`name_${currentLang}`] || beach.name_en;
         let country = beach.country;
         const card = document.createElement('div');
         card.className = 'beach-card';
@@ -377,24 +404,23 @@
           <div class="card-content">
             <div class="card-title">${name}</div>
             <div class="card-location">📍 ${country} · ${beach.location}</div>
-            <div class="card-tags"><span class="tag">🏊‍♀️ 海水浴</span><span class="tag">🍹 パーティー</span><span class="tag">🐠 魚</span></div>
+            <div class="card-tags"><span class="tag">🏊‍♀️ Swim</span><span class="tag">🍹 Party</span><span class="tag">🐠 Fish</span></div>
           </div>
         `;
-        grid.appendChild(card);
+        beachGrid.appendChild(card);
       });
     }
 
     function showDetail(id) {
       const beach = beaches.find(b => b.id === id);
       if (!beach) return;
-      const lang = currentLang;
-      const name = beach[`name_${lang}`] || beach.name_en;
-      const desc = beach[`desc_${lang}`] || beach.desc_en;
+      const name = beach[`name_${currentLang}`] || beach.name_en;
+      const desc = beach[`desc_${currentLang}`] || beach.desc_en;
       listView.classList.add('hidden');
       detailView.classList.remove('hidden');
       detailView.innerHTML = `
         <div class="detail-view">
-          <button class="back-btn" id="detailBackBtn">${uiText[lang].back}</button>
+          <button class="back-btn" id="detailBackBtn">${uiText[currentLang].back}</button>
           <h2>${name}</h2>
           <img class="detail-img" src="${beach.image}" alt="${name}">
           <div class="info-row"><strong>📍 国・地域:</strong> ${beach.country} (${beach.location})</div>
@@ -402,7 +428,7 @@
           <div class="info-row"><strong>🚌 移動手段:</strong> ${beach.transport}</div>
           <div class="info-row"><strong>📏 距離(目安):</strong> ${beach.distance}</div>
           <div class="info-row"><strong>📝 説明:</strong><br> ${desc}</div>
-          <a class="official-link" href="${beach.url}" target="_blank" rel="noopener">${uiText[lang].officialSite} 🔗</a>
+          <a class="official-link" href="${beach.url}" target="_blank" rel="noopener">${uiText[currentLang].officialSite} 🔗</a>
         </div>
       `;
       document.getElementById('detailBackBtn').addEventListener('click', () => {
@@ -420,25 +446,17 @@
         listView.classList.remove('hidden');
       }
     }
-
-    window.addEventListener('popstate', (e) => {
-      if (detailView && !detailView.classList.contains('hidden')) {
-        handleBackButton();
-      }
-    });
+    window.addEventListener('popstate', handleBackButton);
 
     function updateUILanguage() {
       mainTitle.innerText = titles[currentLang];
       renderList();
       if (!detailView.classList.contains('hidden')) {
-        // 詳細再レンダリングはid保持が必要だがシンプルに閉じる
         detailView.classList.add('hidden');
         listView.classList.remove('hidden');
       }
-      // update back button text if visible (but we close detail, fine)
     }
 
-    // テーマ切替
     function setTheme(theme) {
       currentTheme = theme;
       if (theme === 'dark') {
@@ -451,7 +469,6 @@
       localStorage.setItem('beach_theme', theme);
     }
 
-    // 言語切替
     document.querySelectorAll('[data-lang]').forEach(btn => {
       btn.addEventListener('click', () => {
         currentLang = btn.getAttribute('data-lang');
@@ -465,7 +482,6 @@
     document.getElementById('darkModeBtn').addEventListener('click', () => setTheme('dark'));
     document.getElementById('lightModeBtn').addEventListener('click', () => setTheme('light'));
 
-    // 初期化
     const savedLang = localStorage.getItem('beach_lang');
     if (savedLang && ['en','it','ru','ja'].includes(savedLang)) {
       currentLang = savedLang;
@@ -479,12 +495,11 @@
 
     renderList();
 
-    // スポンサーリンク仮 (後で変更可能)
-    document.getElementById('sponsorLinkTop').href = "mailto:mementomorikatsu@gmail.com?subject=Sponsorship Inquiry";
-    document.getElementById('sponsorLinkBottom').href = "mailto:mementomorikatsu@gmail.com?subject=Sponsorship Inquiry";
+    // スポンサーリンク（実際の公式サイトに変更可能）
+    document.getElementById('sponsorLinkTop').href = "https://example.com/sponsor1";
+    document.getElementById('sponsorLinkBottom').href = "https://example.com/sponsor2";
   </script>
   <script>
-    // Service Worker 登録 (PWA)
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js').then(reg => {
