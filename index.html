@@ -54,7 +54,6 @@
       padding: 0 1rem;
     }
 
-    /* ヘッダー */
     .app-header {
       padding: 1.5rem 1rem;
       border-bottom: 1px solid var(--border);
@@ -111,7 +110,6 @@
       color: transparent;
     }
 
-    /* スポンサー枠 */
     .sponsor {
       background: var(--card);
       border: 1px solid var(--border);
@@ -145,7 +143,6 @@
       font-size: 0.8rem;
     }
 
-    /* ビーチグリッド */
     .beach-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -205,7 +202,6 @@
       font-size: 0.7rem;
     }
 
-    /* 詳細ページ */
     .detail-view {
       background: var(--surface);
       border-radius: 1.5rem;
@@ -267,7 +263,6 @@
       border-bottom: 1px solid var(--border);
     }
 
-    /* フッター */
     .app-footer {
       margin-top: 3rem;
       padding: 1.5rem;
@@ -307,7 +302,6 @@
   </div>
 
   <div class="container">
-    <!-- 上部スポンサー -->
     <div class="sponsor" id="topSponsor">
       <div class="sponsor-content">
         <img class="sponsor-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLbR_4KxJDJR03_IZoUeYv-yO8WwPPV5IIBmL1SY-NuclPwGWhu5GWlMM&s=10" alt="Sponsor">
@@ -318,14 +312,12 @@
       </div>
     </div>
 
-    <!-- メインコンテンツ -->
     <div id="listView">
       <div class="beach-grid" id="beachGrid"></div>
     </div>
 
     <div id="detailView" class="hidden"></div>
 
-    <!-- 下部スポンサー -->
     <div class="sponsor" id="bottomSponsor">
       <div class="sponsor-content">
         <img class="sponsor-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLk-xQqDMxBZlRwYw1BQBcBNFOlTlxguxtKLmNuZM5mO_ugeqVTHrPAe2R&s=10" alt="Sponsor">
@@ -343,79 +335,186 @@
   </div>
 
   <script>
-    // ビーチデータ（12件）
+    // ビーチデータ（全項目多言語対応版）
     const beaches = [
-      { id: 1, name_en: "White Beach", name_it: "Spiaggia Bianca", name_ru: "Белый пляж", name_ja: "ホワイトビーチ", country: "Philippines", location: "Boracay",
-        airport: "Caticlan (MPH) / Kalibo (KLO)", transport: "船 + トライシクル (約30分)", distance: "空港からビーチまで約1.5〜2時間",
+      { id: 1, 
+        name_en: "White Beach", name_it: "Spiaggia Bianca", name_ru: "Белый пляж", name_ja: "ホワイトビーチ",
+        country_en: "Philippines", country_it: "Filippine", country_ru: "Филиппины", country_ja: "フィリピン",
+        location_en: "Boracay", location_it: "Boracay", location_ru: "Боракай", location_ja: "ボラカイ",
+        airport_en: "Caticlan (MPH) / Kalibo (KLO)", airport_it: "Caticlan (MPH) / Kalibo (KLO)", airport_ru: "Катиклан (MPH) / Калибо (KLO)", airport_ja: "カティクラン空港 (MPH) / カリボ空港 (KLO)",
+        transport_en: "Boat + Tricycle (approx 30 min)", transport_it: "Barca + Triciclo (circa 30 min)", transport_ru: "Лодка + Трицикл (ок. 30 мин)", transport_ja: "船 + トライシクル (約30分)",
+        distance_en: "From airport to beach: approx 1.5-2 hours", distance_it: "Dall'aeroporto alla spiaggia: circa 1,5-2 ore", distance_ru: "От аэропорта до пляжа: около 1,5-2 часов", distance_ja: "空港からビーチまで約1.5〜2時間",
         desc_en: "Famous for white sand and vibrant nightlife. Perfect for parties and swimming.",
         desc_it: "Famosa per sabbia bianca e vita notturna. Perfetta per feste e nuoto.",
         desc_ru: "Известен белым песком и яркой ночной жизнью. Идеально для вечеринок и купания.",
-        desc_ja: "白い砂浜と活気あるナイトライフで有名。パーティーや海水浴に最適。", image: "https://media.istockphoto.com/id/533554773/photo/white-beach-boracay-philippines.jpg?s=612x612&w=0&k=20&c=BVCgea8yLM6WBJrCgbntaRGFHU_hCotyg4QWMZ_32ps=", url: "https://www.tourism.gov.ph" },
-      { id: 2, name_en: "Patong Beach", name_it: "Spiaggia di Patong", name_ru: "Патонг-Бич", name_ja: "パトンビーチ", country: "Thailand", location: "Phuket",
-        airport: "HKT", transport: "タクシー / ミニバス", distance: "約45分", desc_en: "Vibrant beach with Bangla Road nightlife, jet skiing, and beach clubs.",
+        desc_ja: "白い砂浜と活気あるナイトライフで有名。パーティーや海水浴に最適。", 
+        image: "https://media.istockphoto.com/id/533554773/photo/white-beach-boracay-philippines.jpg?s=612x612&w=0&k=20&c=BVCgea8yLM6WBJrCgbntaRGFHU_hCotyg4QWMZ_32ps=", 
+        url: "https://www.tourism.gov.ph" 
+      },
+      { id: 2, 
+        name_en: "Patong Beach", name_it: "Spiaggia di Patong", name_ru: "Патонг-Бич", name_ja: "パトンビーチ",
+        country_en: "Thailand", country_it: "Thailandia", country_ru: "Таиланд", country_ja: "タイ",
+        location_en: "Phuket", location_it: "Phuket", location_ru: "Пхукет", location_ja: "プーケット",
+        airport_en: "HKT", airport_it: "HKT", airport_ru: "HKT", airport_ja: "プーケット国際空港 (HKT)",
+        transport_en: "Taxi / Minibus", transport_it: "Taxi / Minibus", transport_ru: "Такси / Микроавтобус", transport_ja: "タクシー / ミニバス",
+        distance_en: "Approx 45 min", distance_it: "Circa 45 min", distance_ru: "Около 45 минут", distance_ja: "約45分",
+        desc_en: "Vibrant beach with Bangla Road nightlife, jet skiing, and beach clubs.",
         desc_it: "Spiaggia vivace con vita notturna su Bangla Road, jet ski e beach club.",
         desc_ru: "Оживленный пляж с ночной жизнью на Бангла-роуд, гидроциклами и пляжными клубами.",
-        desc_ja: "バングラ通りのナイトライフやジェットスキー、ビーチクラブが楽しめる活気あるビーチ。", image: "https://www.joeysantini.com/app/uploads/2022/04/Beach.jpg", url: "https://www.phuket.net" },
-      { id: 3, name_en: "Kuta Beach", name_it: "Spiaggia di Kuta", name_ru: "Кута-Бич", name_ja: "クタビーチ", country: "Indonesia", location: "Bali",
-        airport: "DPS", transport: "タクシー", distance: "約20分", desc_en: "Surfing paradise, famous for sunset and affordable bars.",
+        desc_ja: "バングラ通りのナイトライフやジェットスキー、ビーチクラブが楽しめる活気あるビーチ。", 
+        image: "https://www.joeysantini.com/app/uploads/2022/04/Beach.jpg", 
+        url: "https://www.phuket.net" 
+      },
+      { id: 3, 
+        name_en: "Kuta Beach", name_it: "Spiaggia di Kuta", name_ru: "Кута-Бич", name_ja: "クタビーチ",
+        country_en: "Indonesia", country_it: "Indonesia", country_ru: "Индонезия", country_ja: "インドネシア",
+        location_en: "Bali", location_it: "Bali", location_ru: "Бали", location_ja: "バリ島",
+        airport_en: "DPS", airport_it: "DPS", airport_ru: "DPS", airport_ja: "ングラ・ライ国際空港 (DPS)",
+        transport_en: "Taxi", transport_it: "Taxi", transport_ru: "Такси", transport_ja: "タクシー",
+        distance_en: "Approx 20 min", distance_it: "Circa 20 min", distance_ru: "Около 20 минут", distance_ja: "約20分",
+        desc_en: "Surfing paradise, famous for sunset and affordable bars.",
         desc_it: "Paradiso del surf, famoso per i tramonti e i bar economici.",
         desc_ru: "Рай для серфинга, известен закатами и недорогими барами.",
-        desc_ja: "サーフィンの楽園。夕日と格安バーで有名。", image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/03/ea/ac/8a/kuta.jpg?w=500&h=500&s=1", url: "https://kutabeachbalii.com/" },
-      { id: 4, name_en: "Pantai Cenang", name_it: "Pantai Cenang", name_ru: "Пантаи-Ченанг", name_ja: "パンタイ・チェナン", country: "Malaysia", location: "Langkawi",
-        airport: "LGK", transport: "タクシー", distance: "約15分", desc_en: "Lively beach with water sports, night markets and beach bars.",
+        desc_ja: "サーフィンの楽園。夕日と格安バーで有名。", 
+        image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/03/ea/ac/8a/kuta.jpg?w=500&h=500&s=1", 
+        url: "https://kutabeachbalii.com/" 
+      },
+      { id: 4, 
+        name_en: "Pantai Cenang", name_it: "Pantai Cenang", name_ru: "Пантаи-Ченанг", name_ja: "パンタイ・チェナン",
+        country_en: "Malaysia", country_it: "Malesia", country_ru: "Малайзия", country_ja: "マレーシア",
+        location_en: "Langkawi", location_it: "Langkawi", location_ru: "Лангкави", location_ja: "ランカウイ島",
+        airport_en: "LGK", airport_it: "LGK", airport_ru: "LGK", airport_ja: "ランカウイ国際空港 (LGK)",
+        transport_en: "Taxi", transport_it: "Taxi", transport_ru: "Такси", transport_ja: "タクシー",
+        distance_en: "Approx 15 min", distance_it: "Circa 15 min", distance_ru: "Около 15 минут", distance_ja: "約15分",
+        desc_en: "Lively beach with water sports, night markets and beach bars.",
         desc_it: "Spiaggia vivace con sport acquatici, mercati notturni e bar sulla spiaggia.",
         desc_ru: "Оживленный пляж с водными видами спорта, ночными рынками и пляжными барами.",
-        desc_ja: "ウォータースポーツ、夜市、ビーチバーがある賑やかなビーチ。", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWhPzBfTrSEAssoZlUkcGsVr6qpgSywNrbVI0pynKoQHbMrMWGz4Ymy45Z&s=10", url: "https://www.malaysia.travel" },
-      { id: 5, name_en: "Nha Trang Beach", name_it: "Spiaggia di Nha Trang", name_ru: "Нячанг-Бич", name_ja: "ニャチャンビーチ", country: "Vietnam", location: "Nha Trang",
-        airport: "CXR", transport: "バス / タクシー", distance: "約45分", desc_en: "Long beach, floating bar parties, great seafood.",
+        desc_ja: "ウォータースポーツ、夜市、ビーチバーがある賑やかなビーチ。", 
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWhPzBfTrSEAssoZlUkcGsVr6qpgSywNrbVI0pynKoQHbMrMWGz4Ymy45Z&s=10", 
+        url: "https://www.malaysia.travel" 
+      },
+      { id: 5, 
+        name_en: "Nha Trang Beach", name_it: "Spiaggia di Nha Trang", name_ru: "Нячанг-Бич", name_ja: "ニャチャンビーチ",
+        country_en: "Vietnam", country_it: "Vietnam", country_ru: "Вьетнам", country_ja: "ベトナム",
+        location_en: "Nha Trang", location_it: "Nha Trang", location_ru: "Нячанг", location_ja: "ニャチャン",
+        airport_en: "CXR", airport_it: "CXR", airport_ru: "CXR", airport_ja: "カムラン国際空港 (CXR)",
+        transport_en: "Bus / Taxi", transport_it: "Bus / Taxi", transport_ru: "Автобус / Такси", transport_ja: "バス / タクシー",
+        distance_en: "Approx 45 min", distance_it: "Circa 45 min", distance_ru: "Около 45 минут", distance_ja: "約45分",
+        desc_en: "Long beach, floating bar parties, great seafood.",
         desc_it: "Lunga spiaggia, feste in bar galleggianti, ottimo pesce.",
         desc_ru: "Длинный пляж, вечеринки на плавучих барах, отличные морепродукты.",
-        desc_ja: "長いビーチ、フローティングバーパーティー、絶品シーフード。", image: "https://bcp.cdnchinhphu.vn/zoom/670_420/344443456812359680/2024/5/29/iex-cdncom-chatluongvacuocsongvn-files-content-2024-05-23-nha-trang-1-1834-1716974152150536253039-28-0-453-680-crop-1716974166147405945406.jpg", url: "https://vietnam.travel" },
-      { id: 6, name_en: "Yonaha Maehama", name_it: "Yonaha Maehama", name_ru: "Ёнаха Маэхама", name_ja: "与那覇前浜ビーチ", country: "Japan", location: "Miyakojima, Okinawa",
-        airport: "MMY", transport: "バス / レンタカー", distance: "約30分", desc_en: "7km of pure white sand, emerald water, excellent swimming.",
+        desc_ja: "長いビーチ、フローティングバーパーティー、絶品シーフード。", 
+        image: "https://bcp.cdnchinhphu.vn/zoom/670_420/344443456812359680/2024/5/29/iex-cdncom-chatluongvacuocsongvn-files-content-2024-05-23-nha-trang-1-1834-1716974152150536253039-28-0-453-680-crop-1716974166147405945406.jpg", 
+        url: "https://vietnam.travel" 
+      },
+      { id: 6, 
+        name_en: "Yonaha Maehama", name_it: "Yonaha Maehama", name_ru: "Ёнаха Маэхама", name_ja: "与那覇前浜ビーチ",
+        country_en: "Japan", country_it: "Giappone", country_ru: "Япония", country_ja: "日本",
+        location_en: "Miyakojima, Okinawa", location_it: "Miyakojima, Okinawa", location_ru: "Миякодзима, Окинава", location_ja: "宮古島・沖縄",
+        airport_en: "MMY", airport_it: "MMY", airport_ru: "MMY", airport_ja: "宮古空港 (MMY)",
+        transport_en: "Bus / Rental car", transport_it: "Bus / Auto a noleggio", transport_ru: "Автобус / Аренда авто", transport_ja: "バス / レンタカー",
+        distance_en: "Approx 30 min", distance_it: "Circa 30 min", distance_ru: "Около 30 минут", distance_ja: "約30分",
+        desc_en: "7km of pure white sand, emerald water, excellent swimming.",
         desc_it: "7 km di sabbia bianca, acqua smeraldo, eccellente per nuotare.",
         desc_ru: "7 км белого песка, изумрудная вода, отлично для купания.",
-        desc_ja: "7kmの白砂とエメラルドグリーンの海。海水浴に最適。", image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/ca/e2/f6/this-is-yonaha-maehama.jpg?w=1200&h=1200&s=1", url: "https://www.japan-guide.com/e/e7300.html" },
-      { id: 7, name_en: "My Khe Beach", name_it: "Spiaggia My Khe", name_ru: "Май Кхе Бич", name_ja: "ミーケビーチ", country: "Vietnam", location: "Da Nang",
-        airport: "DAD", transport: "タクシー", distance: "約10分", desc_en: "Gentle waves, nearby Cham Island snorkeling tours.",
+        desc_ja: "7kmの白砂とエメラルドグリーンの海。海水浴に最適。", 
+        image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/ca/e2/f6/this-is-yonaha-maehama.jpg?w=1200&h=1200&s=1", 
+        url: "https://www.japan-guide.com/e/e7300.html" 
+      },
+      { id: 7, 
+        name_en: "My Khe Beach", name_it: "Spiaggia My Khe", name_ru: "Май Кхе Бич", name_ja: "ミーケビーチ",
+        country_en: "Vietnam", country_it: "Vietnam", country_ru: "Вьетнам", country_ja: "ベトナム",
+        location_en: "Da Nang", location_it: "Da Nang", location_ru: "Дананг", location_ja: "ダナン",
+        airport_en: "DAD", airport_it: "DAD", airport_ru: "DAD", airport_ja: "ダナン国際空港 (DAD)",
+        transport_en: "Taxi", transport_it: "Taxi", transport_ru: "Такси", transport_ja: "タクシー",
+        distance_en: "Approx 10 min", distance_it: "Circa 10 min", distance_ru: "Около 10 минут", distance_ja: "約10分",
+        desc_en: "Gentle waves, nearby Cham Island snorkeling tours.",
         desc_it: "Onde gentili, tour di snorkeling all'isola di Cham.",
         desc_ru: "Нежные волны, туры для снорклинга на остров Чам.",
-        desc_ja: "穏やかな波、近くのチャム島でシュノーケリングツアー。", image: "https://danangfantasticity.com/wp-content/uploads/2024/03/chiem-nguong-bien-my-khe-1-trong-10-bai-bien-dep-nhat-chau-a-05.jpg", url: "https://danangfantasticity.com" },
-      { id: 8, name_en: "El Nido", name_it: "El Nido", name_ru: "Эль-Нидо", name_ja: "エルニド", country: "Philippines", location: "Palawan",
-        airport: "PPS (Puerto Princesa)", transport: "バン / バス", distance: "約5-6時間", desc_en: "Lagoon paradise, incredible snorkeling, Island hopping.",
+        desc_ja: "穏やかな波、近くのチャム島でシュノーケリングツアー。", 
+        image: "https://danangfantasticity.com/wp-content/uploads/2024/03/chiem-nguong-bien-my-khe-1-trong-10-bai-bien-dep-nhat-chau-a-05.jpg", 
+        url: "https://danangfantasticity.com" 
+      },
+      { id: 8, 
+        name_en: "El Nido", name_it: "El Nido", name_ru: "Эль-Нидо", name_ja: "エルニド",
+        country_en: "Philippines", country_it: "Filippine", country_ru: "Филиппины", country_ja: "フィリピン",
+        location_en: "Palawan", location_it: "Palawan", location_ru: "Палаван", location_ja: "パラワン",
+        airport_en: "PPS (Puerto Princesa)", airport_it: "PPS (Puerto Princesa)", airport_ru: "PPS (Пуэрто-Принсеса)", airport_ja: "プエルトプリンセサ空港 (PPS)",
+        transport_en: "Van / Bus", transport_it: "Van / Bus", transport_ru: "Микроавтобус / Автобус", transport_ja: "バン / バス",
+        distance_en: "Approx 5-6 hours", distance_it: "Circa 5-6 ore", distance_ru: "Около 5-6 часов", distance_ja: "約5-6時間",
+        desc_en: "Lagoon paradise, incredible snorkeling, Island hopping.",
         desc_it: "Paradiso di lagune, snorkeling incredibile, gite in barca.",
         desc_ru: "Райские лагуны, невероятный снорклинг, прогулки на лодках.",
-        desc_ja: "ラグーンの楽園、素晴らしいシュノーケリング&アイランドホッピング。", image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/cb/a6/63/re-discovering-my-fave.jpg?w=1400&h=-1&s=1", url: "https://www.palawan.gov.ph" },
-      { id: 9, name_en: "Condoi Beach", name_it: "Spiaggia Condoi", name_ru: "Кондои Бич", name_ja: "コンドイビーチ", country: "Japan", location: "Taketomi, Okinawa",
-        airport: "ISG (Ishigaki)", transport: "高速船 + バス / レンタサイクル", distance: "石垣空港から港15分＋船10分＋バス10分", desc_en: "Shallow turquoise water, star-shaped sand, very peaceful.",
+        desc_ja: "ラグーンの楽園、素晴らしいシュノーケリング&アイランドホッピング。", 
+        image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/cb/a6/63/re-discovering-my-fave.jpg?w=1400&h=-1&s=1", 
+        url: "https://www.palawan.gov.ph" 
+      },
+      { id: 9, 
+        name_en: "Condoi Beach", name_it: "Spiaggia Condoi", name_ru: "Кондои Бич", name_ja: "コンドイビーチ",
+        country_en: "Japan", country_it: "Giappone", country_ru: "Япония", country_ja: "日本",
+        location_en: "Taketomi, Okinawa", location_it: "Taketomi, Okinawa", location_ru: "Такетоми, Окинава", location_ja: "竹富島・沖縄",
+        airport_en: "ISG (Ishigaki)", airport_it: "ISG (Ishigaki)", airport_ru: "ISG (Исигаки)", airport_ja: "石垣空港 (ISG)",
+        transport_en: "High-speed boat + Bus / Rental bicycle", transport_it: "Traghetto veloce + Bus / Bicicletta a noleggio", transport_ru: "Скоростной катер + Автобус / Аренда велосипеда", transport_ja: "高速船 + バス / レンタサイクル",
+        distance_en: "Airport to port 15 min + boat 10 min + bus 10 min", distance_it: "Aeroporto al porto 15 min + traghetto 10 min + bus 10 min", distance_ru: "Аэропорт до порта 15 мин + лодка 10 мин + автобус 10 мин", distance_ja: "石垣空港から港15分＋船10分＋バス10分",
+        desc_en: "Shallow turquoise water, star-shaped sand, very peaceful.",
         desc_it: "Acqua turchese poco profonda, sabbia a forma di stella, molto tranquilla.",
         desc_ru: "Мелкая бирюзовая вода, песок в форме звезды, очень спокойно.",
-        desc_ja: "遠浅のターコイズブルー、星型の砂、とても静か。", image: "https://svcstrg.cld.navitime.jp/travelguide/p47100003/p47100003_01.jpg", url: "https://visitokinawajapan.com/destinations/yaeyama-islands/ishigaki-island/" },
-      { id: 10, name_en: "Okinawa Main Island (Onna)", name_it: "Isola Principale di Okinawa (Onna)", name_ru: "Главный остров Окинава (Онна)", name_ja: "沖縄本島 (恩納村)", country: "Japan", location: "Onna Village",
-        airport: "OKA", transport: "リムジンバス / レンタカー", distance: "約60分", desc_en: "Great snorkeling, sunset beaches, American Village nightlife nearby.",
+        desc_ja: "遠浅のターコイズブルー、星型の砂、とても静か。", 
+        image: "https://svcstrg.cld.navitime.jp/travelguide/p47100003/p47100003_01.jpg", 
+        url: "https://visitokinawajapan.com/destinations/yaeyama-islands/ishigaki-island/" 
+      },
+      { id: 10, 
+        name_en: "Okinawa Main Island (Onna)", name_it: "Isola Principale di Okinawa (Onna)", name_ru: "Главный остров Окинава (Онна)", name_ja: "沖縄本島 (恩納村)",
+        country_en: "Japan", country_it: "Giappone", country_ru: "Япония", country_ja: "日本",
+        location_en: "Onna Village", location_it: "Onna Village", location_ru: "Онна", location_ja: "恩納村",
+        airport_en: "OKA", airport_it: "OKA", airport_ru: "OKA", airport_ja: "那覇空港 (OKA)",
+        transport_en: "Limousine bus / Rental car", transport_it: "Bus navetta / Auto a noleggio", transport_ru: "Лимузин-автобус / Аренда авто", transport_ja: "リムジンバス / レンタカー",
+        distance_en: "Approx 60 min", distance_it: "Circa 60 min", distance_ru: "Около 60 минут", distance_ja: "約60分",
+        desc_en: "Great snorkeling, sunset beaches, American Village nightlife nearby.",
         desc_it: "Ottimo snorkeling, tramonti, vita notturna all'American Village.",
         desc_ru: "Отличный снорклинг, закаты, ночная жизнь в Американской деревне.",
-        desc_ja: "シュノーケリング最高、夕日、アメリカンビレッジのナイトライフ。", image: "https://visitokinawajapan.com/wp-content/themes/visit-okinawa_multi-language/lang/en/assets/img/destinations-thumbnail-03@2x.webp", url: "https://visitokinawa.jp" },
-      { id: 11, name_en: "Furuzamami Beach", name_it: "Spiaggia Furuzamami", name_ru: "Фурудзамами Бич", name_ja: "古座間味ビーチ", country: "Japan", location: "Zamami Island",
-        airport: "OKA + 高速船", transport: "那覇港から高速船(50-120分) + 徒歩", distance: "那覇空港から港まで15分＋船", desc_en: "Sea turtle encounters, crystal clear water, quiet.",
+        desc_ja: "シュノーケリング最高、夕日、アメリカンビレッジのナイトライフ。", 
+        image: "https://visitokinawajapan.com/wp-content/themes/visit-okinawa_multi-language/lang/en/assets/img/destinations-thumbnail-03@2x.webp", 
+        url: "https://visitokinawa.jp" 
+      },
+      { id: 11, 
+        name_en: "Furuzamami Beach", name_it: "Spiaggia Furuzamami", name_ru: "Фурудзамами Бич", name_ja: "古座間味ビーチ",
+        country_en: "Japan", country_it: "Giappone", country_ru: "Япония", country_ja: "日本",
+        location_en: "Zamami Island", location_it: "Zamami Island", location_ru: "Дзамами", location_ja: "座間味島",
+        airport_en: "OKA + High-speed boat", airport_it: "OKA + Traghetto veloce", airport_ru: "OKA + Скоростной катер", airport_ja: "那覇空港 + 高速船",
+        transport_en: "High-speed boat from Naha port + walk", transport_it: "Traghetto veloce dal porto di Naha + a piedi", transport_ru: "Скоростной катер из порта Наха + пешком", transport_ja: "那覇港から高速船(50-120分) + 徒歩",
+        distance_en: "Airport to port 15 min + boat ride", distance_it: "Aeroporto al porto 15 min + traghetto", distance_ru: "Аэропорт до порта 15 мин + катер", distance_ja: "那覇空港から港まで15分＋船",
+        desc_en: "Sea turtle encounters, crystal clear water, quiet.",
         desc_it: "Incontri con tartarughe marine, acqua cristallina, tranquilla.",
         desc_ru: "Встречи с морскими черепахами, кристально чистая вода, тишина.",
-        desc_ja: "ウミガメ遭遇、透明度抜群、静か。", image: "https://cdn.zekkei-japan.jp/images/spots/98bf92887a3cab4767e5ea5b1cce81cb.jpg", url: "https://www.vill.zamami.okinawa" },
-      { id: 12, name_en: "Nabee Beach", name_it: "Spiaggia Nabee", name_ru: "Наби Бич", name_ja: "ナビービーチ", country: "Japan", location: "Onna, Okinawa",
-        airport: "OKA", transport: "バス / タクシー", distance: "約70分", desc_en: "White sand, BBQ facilities, calm water for swimming.",
+        desc_ja: "ウミガメ遭遇、透明度抜群、静か。", 
+        image: "https://cdn.zekkei-japan.jp/images/spots/98bf92887a3cab4767e5ea5b1cce81cb.jpg", 
+        url: "https://www.vill.zamami.okinawa" 
+      },
+      { id: 12, 
+        name_en: "Nabee Beach", name_it: "Spiaggia Nabee", name_ru: "Наби Бич", name_ja: "ナビービーチ",
+        country_en: "Japan", country_it: "Giappone", country_ru: "Япония", country_ja: "日本",
+        location_en: "Onna, Okinawa", location_it: "Onna, Okinawa", location_ru: "Онна, Окинава", location_ja: "恩納村・沖縄",
+        airport_en: "OKA", airport_it: "OKA", airport_ru: "OKA", airport_ja: "那覇空港 (OKA)",
+        transport_en: "Bus / Taxi", transport_it: "Bus / Taxi", transport_ru: "Автобус / Такси", transport_ja: "バス / タクシー",
+        distance_en: "Approx 70 min", distance_it: "Circa 70 min", distance_ru: "Около 70 минут", distance_ja: "約70分",
+        desc_en: "White sand, BBQ facilities, calm water for swimming.",
         desc_it: "Sabbia bianca, struttura per BBQ, acqua calma per nuotare.",
         desc_ru: "Белый песок, мангалы, спокойная вода для купания.",
-        desc_ja: "白砂、BBQ設備、泳ぎやすい穏やかな海。", image: "https://okinawa-bookmark.com/wp-content/uploads/2022/02/69667320.72c723f49f1accbc82a45b257dc315af.22020510-1024x576.jpg", url: "https://visitokinawajapan.com/destinations/okinawa-main-island/northern-okinawa-main-island/onna-coast/" }
+        desc_ja: "白砂、BBQ設備、泳ぎやすい穏やかな海。", 
+        image: "https://okinawa-bookmark.com/wp-content/uploads/2022/02/69667320.72c723f49f1accbc82a45b257dc315af.22020510-1024x576.jpg", 
+        url: "https://visitokinawajapan.com/destinations/okinawa-main-island/northern-okinawa-main-island/onna-coast/" 
+      }
     ];
 
     let currentLang = 'en';
     let currentTheme = 'dark';
 
     const uiText = {
-      en: { back: "← Back to list", officialSite: "Official Website" },
-      it: { back: "← Torna all'elenco", officialSite: "Sito Ufficiale" },
-      ru: { back: "← Назад к списку", officialSite: "Официальный сайт" },
-      ja: { back: "← 一覧に戻る", officialSite: "公式ホームページ" }
+      en: { back: "← Back to list", officialSite: "Official Website", countryLabel: "📍 Country / Region", airportLabel: "✈️ Nearest Airport", transportLabel: "🚌 Transportation", distanceLabel: "📏 Distance (approx)", descLabel: "📝 Description" },
+      it: { back: "← Torna all'elenco", officialSite: "Sito Ufficiale", countryLabel: "📍 Nazione / Regione", airportLabel: "✈️ Aeroporto più vicino", transportLabel: "🚌 Trasporti", distanceLabel: "📏 Distanza (circa)", descLabel: "📝 Descrizione" },
+      ru: { back: "← Назад к списку", officialSite: "Официальный сайт", countryLabel: "📍 Страна / Регион", airportLabel: "✈️ Ближайший аэропорт", transportLabel: "🚌 Транспорт", distanceLabel: "📏 Расстояние (приблизительно)", descLabel: "📝 Описание" },
+      ja: { back: "← 一覧に戻る", officialSite: "公式ホームページ", countryLabel: "📍 国・地域", airportLabel: "✈️ 最寄り空港", transportLabel: "🚌 移動手段", distanceLabel: "📏 距離(目安)", descLabel: "📝 説明" }
     };
 
     const titles = { en: "🏖️ Asia Best Beaches", it: "🏖️ Le migliori spiagge dell'Asia", ru: "🏖️ Лучшие пляжи Азии", ja: "🏖️ アジアのベストビーチ" };
@@ -429,15 +528,16 @@
       beachGrid.innerHTML = '';
       beaches.forEach(beach => {
         let name = beach[`name_${currentLang}`] || beach.name_en;
-        let country = beach.country;
+        let country = beach[`country_${currentLang}`] || beach.country_en;
+        let location = beach[`location_${currentLang}`] || beach.location_en;
         const card = document.createElement('div');
         card.className = 'beach-card';
         card.onclick = () => showDetail(beach.id);
         card.innerHTML = `
           <img class="card-img" src="${beach.image}" alt="${name}" loading="lazy">
           <div class="card-content">
-            <div class="card-title">${name}</div>
-            <div class="card-location">📍 ${country} · ${beach.location}</div>
+            <div class="card-title">${escapeHtml(name)}</div>
+            <div class="card-location">📍 ${escapeHtml(country)} · ${escapeHtml(location)}</div>
             <div class="card-tags"><span class="tag">🏊‍♀️ Swim</span><span class="tag">🍹 Party</span><span class="tag">🐠 Fish</span></div>
           </div>
         `;
@@ -445,22 +545,37 @@
       });
     }
 
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/[&<>]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        return m;
+      });
+    }
+
     function showDetail(id) {
       const beach = beaches.find(b => b.id === id);
       if (!beach) return;
       const name = beach[`name_${currentLang}`] || beach.name_en;
+      const country = beach[`country_${currentLang}`] || beach.country_en;
+      const location = beach[`location_${currentLang}`] || beach.location_en;
+      const airport = beach[`airport_${currentLang}`] || beach.airport_en;
+      const transport = beach[`transport_${currentLang}`] || beach.transport_en;
+      const distance = beach[`distance_${currentLang}`] || beach.distance_en;
       const desc = beach[`desc_${currentLang}`] || beach.desc_en;
       listView.classList.add('hidden');
       detailView.classList.remove('hidden');
       detailView.innerHTML = `
         <div class="detail-view">
-          <h2>${name}</h2>
-          <img class="detail-img" src="${beach.image}" alt="${name}">
-          <div class="info-row"><strong>📍 国・地域:</strong> ${beach.country} (${beach.location})</div>
-          <div class="info-row"><strong>✈️ 最寄り空港:</strong> ${beach.airport}</div>
-          <div class="info-row"><strong>🚌 移動手段:</strong> ${beach.transport}</div>
-          <div class="info-row"><strong>📏 距離(目安):</strong> ${beach.distance}</div>
-          <div class="info-row"><strong>📝 説明:</strong><br> ${desc}</div>
+          <h2>${escapeHtml(name)}</h2>
+          <img class="detail-img" src="${beach.image}" alt="${escapeHtml(name)}">
+          <div class="info-row"><strong>${uiText[currentLang].countryLabel}:</strong> ${escapeHtml(country)} (${escapeHtml(location)})</div>
+          <div class="info-row"><strong>${uiText[currentLang].airportLabel}:</strong> ${escapeHtml(airport)}</div>
+          <div class="info-row"><strong>${uiText[currentLang].transportLabel}:</strong> ${escapeHtml(transport)}</div>
+          <div class="info-row"><strong>${uiText[currentLang].distanceLabel}:</strong> ${escapeHtml(distance)}</div>
+          <div class="info-row"><strong>${uiText[currentLang].descLabel}:</strong><br> ${escapeHtml(desc)}</div>
           <div class="detail-actions">
             <button class="back-btn" id="detailBackBtn">${uiText[currentLang].back}</button>
             <a class="official-link" href="${beach.url}" target="_blank" rel="noopener">${uiText[currentLang].officialSite} 🔗</a>
@@ -530,10 +645,6 @@
     else setTheme('dark');
 
     renderList();
-
-    // スポンサーリンク（サンプル）
-    document.getElementById('sponsorLinkTop').href = "https://example.com/sponsor1";
-    document.getElementById('sponsorLinkBottom').href = "https://example.com/sponsor2";
   </script>
   <script>
     if ('serviceWorker' in navigator) {
